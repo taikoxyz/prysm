@@ -2,7 +2,7 @@ name: "Push docker image to GAR"
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ taiko ]
     tags:
       - "v*"
 
@@ -32,7 +32,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            us-docker.pkg.dev/evmchain/images/client-go
+            us-docker.pkg.dev/evmchain/images/prysm
           tags: |
             type=ref,event=branch
             type=ref,event=pr
