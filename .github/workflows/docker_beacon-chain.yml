@@ -1,4 +1,4 @@
-name: "Push docker image to GAR"
+name: "Push beacon-chain docker image to GAR"
 
 on:
   push:
@@ -47,6 +47,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
-          push: true
+          push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
