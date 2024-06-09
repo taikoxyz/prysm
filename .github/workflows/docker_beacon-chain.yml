@@ -7,7 +7,7 @@ on:
       - "v*"
 
 jobs:
-  push-docker-image:
+  push-beacon-chain-docker-image:
     runs-on: ubuntu-latest
 
     steps:
