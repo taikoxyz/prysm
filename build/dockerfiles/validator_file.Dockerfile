@@ -19,7 +19,7 @@ RUN cd /prysm/cmd/validator && go build -v -o /usr/local/bin/
 # Pull Geth into a second stage deploy alpine container
 FROM alpine:latest
 
-RUN apk add --no-cache ca-certificates
+RUN apk add --no-cache ca-certificates libstdc++ libc-dev
 COPY --from=builder /usr/local/bin/validator /usr/local/bin/
 
 ENTRYPOINT ["validator"]
