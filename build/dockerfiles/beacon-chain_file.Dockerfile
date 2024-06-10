@@ -1,7 +1,7 @@
 # Build Geth in a stock Go builder container
 FROM golang:1.21 as builder
 
-RUN apt-get update && apt-get install -y gcc g++ libstdc++6 libc-dev musl-dev linux-headers git
+RUN apt-get update && apt-get install -y --no-install-recommends gcc g++ libstdc++6 libc-dev musl-dev linux-headers
 
 # Get dependencies - will also be cached if we won't change go.mod/go.sum
 COPY go.mod /prysm/
@@ -14,7 +14,7 @@ RUN cd /prysm/cmd/beacon-chain && CGO_ENABLED=1 go build -v -o /usr/local/bin/be
 # Pull Geth into a second stage deploy container
 FROM debian:buster-slim
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
 	ca-certificates \
 	libstdc++6 \
 	libc-dev \
