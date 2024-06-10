@@ -17,14 +17,7 @@ ADD . /prysm
 RUN cd /prysm/cmd/beacon-chain && CGO_ENABLED=1 go build -v -o /usr/local/bin/beacon-chain
 
 # Pull Geth into a second stage deploy container
-FROM debian:bullseye-slim
-
-RUN apt-get update && apt-get install -y \
-	ca-certificates \
-	libstdc++6 \
-	libc-dev \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+FROM debian:latest
 
 COPY --from=builder /usr/local/bin/beacon-chain /usr/local/bin/
 
