@@ -17,7 +17,7 @@ ADD . /prysm
 RUN cd /prysm/cmd/validator && CGO_ENABLED=1 go build -v -o /usr/local/bin/validator
 
 # Pull Geth into a second stage deploy container
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
