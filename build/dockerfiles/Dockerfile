@@ -34,15 +34,15 @@ RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
     cd /prysm/cmd/prysmctl && CGO_ENABLED=1 go build -v -o /usr/local/bin/prysmctl
 
 # Pull Geth into a second stage deploy container
-FROM debian:latest AS beacon-chain
+FROM alpine:3.20 AS beacon-chain
 COPY --from=build-beacon-chain /usr/local/bin/beacon-chain /usr/local/bin/
 EXPOSE 4000 3500 8080 6060 9090
 ENTRYPOINT ["beacon-chain"]
 
-FROM debian:latest AS validator
+FROM alpine:3.20 AS validator
 COPY --from=build-validator /usr/local/bin/validator /usr/local/bin/
 ENTRYPOINT ["validator"]
 
-FROM debian:latest AS prysmctl
+FROM alpine:3.20 AS prysmctl
 COPY --from=build-prysmctl /usr/local/bin/prysmctl /usr/local/bin/
 ENTRYPOINT ["prysmctl"]
