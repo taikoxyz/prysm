@@ -1,5 +1,5 @@
 # Build Geth in a stock Go builder container
-FROM --platform=${BUILDPLATFORM} golang:1.21 as builder
+FROM --platform=${BUILDPLATFORM} golang:1.21 AS builder
 
 RUN apt-get update && apt-get install -y \
 	gcc \
