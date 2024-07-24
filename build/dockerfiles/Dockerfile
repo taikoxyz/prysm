@@ -1,12 +1,12 @@
 # Build Geth in a stock Go builder container
 FROM --platform=${BUILDPLATFORM} golang:1.21 AS builder
 
-RUN apt-get update && apt-get install -y \
-	gcc \
-	g++ \
-	libstdc++6 \
-	libc-dev \
-	musl-tools
+#RUN apt-get update && apt-get install -y \
+#	gcc \
+#	g++ \
+#	libstdc++6 \
+#	libc-dev \
+#	musl-tools
 
 # Get dependencies - will also be cached if we won't change go.mod/go.sum
 COPY go.mod /prysm/
