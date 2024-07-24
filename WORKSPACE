@@ -29,23 +29,7 @@ http_archive(
 
 load("@hermetic_cc_toolchain//toolchain:defs.bzl", zig_toolchains = "toolchains")
 
-# Temporarily use a nightly build until 0.12.0 is released.
-# See: https://github.com/prysmaticlabs/prysm/issues/13130
-zig_toolchains(
-    host_platform_sha256 = {
-        "linux-aarch64": "45afb8e32adde825165f4f293fcea9ecea503f7f9ec0e9bf4435afe70e67fb70",
-        "linux-x86_64": "f136c6a8a0f6adcb057d73615fbcd6f88281b3593f7008d5f7ed514ff925c02e",
-        "macos-aarch64": "05d995853c05243151deff47b60bdc2674f1e794a939eaeca0f42312da031cee",
-        "macos-x86_64": "721754ba5a50f31e8a1f0e1a74cace26f8246576878ac4a8591b0ee7b6db1fc1",
-        "windows-x86_64": "93f5248b2ea8c5ee8175e15b1384e133edc1cd49870b3ea259062a2e04164343",
-    },
-    url_formats = [
-        "https://ziglang.org/builds/zig-{host_platform}-{version}.{_ext}",
-        "https://mirror.bazel.build/ziglang.org/builds/zig-{host_platform}-{version}.{_ext}",
-        "https://prysmaticlabs.com/mirror/ziglang.org/builds/zig-{host_platform}-{version}.{_ext}",
-    ],
-    version = "0.12.0-dev.1349+fa022d1ec",
-)
+zig_toolchains()
 
 # Register zig sdk toolchains with support for Ubuntu 20.04 (Focal Fossa) which has an EOL date of April, 2025.
 # For ubuntu glibc support, see https://launchpad.net/ubuntu/+source/glibc
@@ -340,22 +324,6 @@ filegroup(
     sha256 = "77e7e3ed65e33b7bb19d30131f4c2bb39e4dfeb188ab9ae84651c3cc7600131d",
     strip_prefix = "eth2-networks-934c948e69205dcf2deb87e4ae6cc140c335f94d",
     url = "https://github.com/eth-clients/eth2-networks/archive/934c948e69205dcf2deb87e4ae6cc140c335f94d.tar.gz",
-)
-
-http_archive(
-    name = "goerli_testnet",
-    build_file_content = """
-filegroup(
-    name = "configs",
-    srcs = [
-        "prater/config.yaml",
-    ],
-    visibility = ["//visibility:public"],
-)
-    """,
-    sha256 = "43fc0f55ddff7b511713e2de07aa22846a67432df997296fb4fc09cd8ed1dcdb",
-    strip_prefix = "goerli-6522ac6684693740cd4ddcc2a0662e03702aa4a1",
-    url = "https://github.com/eth-clients/goerli/archive/6522ac6684693740cd4ddcc2a0662e03702aa4a1.tar.gz",
 )
 
 http_archive(
